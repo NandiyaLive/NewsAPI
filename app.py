@@ -1,32 +1,40 @@
 from flask import Flask, jsonify
+
 from adaderana import findnews
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def home():
     homePage = {
         "Name": "AdaDeranaNewsAPI",
         "Status": "Up",
         "Author": "Neranjana Prasad",
-        "Web": "https://neranjana.tk"
+        "Web": "https://neranjana.tk",
     }
     return homePage
 
 
-@app.route('/<query>')
+@app.route("/<query>")
 def getNews(query):
     if query == "hot-news":
-        return jsonify(findnews('hot-news'))
+        return jsonify(findnews("hot-news"))
     elif query == "sports-news":
         return jsonify(findnews("sports-news"))
     elif query == "entertainment-news":
         return jsonify(findnews("entertainment-news"))
     elif query == "technology-news":
         return jsonify(findnews("technology-news"))
+    else:
+        return jsonify(
+            {
+                "success": False,
+                "error": "Invalid category. Please use one of the following: hot-news, sports-news, entertainment-news, technology-news.",
+            }
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.debug = True
-    app.run(host='0.0.0.0', port=5000, use_reloader=True)
+    app.run(host="0.0.0.0", port=5000, use_reloader=True)
