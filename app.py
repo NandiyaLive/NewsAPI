@@ -8,10 +8,19 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     homePage = {
-        "Name": "AdaDeranaNewsAPI",
+        "Name": "Ada Derana News API",
+        "Version": "1.0.0",
+        "Description": "A simple API to fetch latest news from Ada Derana.",
         "Status": "Up",
         "Author": "Neranjana Prasad",
-        "Web": "https://neranjana.tk",
+        "Web": "https://neranjana.me",
+        "GitHub": "https://github.com/NandiyaLive/NewsAPI",
+        "Usage": {
+            "Hot News": "/hot-news",
+            "Sports News": "/sports-news",
+            "Entertainment News": "/entertainment-news",
+            "Technology News": "/technology-news",
+        },
     }
     return homePage
 
